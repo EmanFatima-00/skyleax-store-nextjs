@@ -1,29 +1,26 @@
-"use client";
+"use client"
 import { useState } from "react";
 
-export default function AddProduct({ onAdd }: { onAdd: (p:any)=>void }) {
+export default function AddProduct() {
   const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [category, setCategory] = useState("Clothing");
-
-  const handleSubmit = (e:any) => {
-    e.preventDefault();
-    if(!name || !price) return;
-    onAdd({ name, price: Number(price), category });
-    setName(""); setPrice("");
-  };
 
   return (
-    <div className="bg-white p-6 rounded-2xl border border-zinc-200">
-      <h2 className="font-bold mb-4">Add Product</h2>
-      <form onSubmit={handleSubmit} className="space-y-3">
-        <input value={name} onChange={e=>setName(e.target.value)} placeholder="Product Name" className="w-full p-3 rounded-xl border border-zinc-200 outline-none" />
-        <input value={price} onChange={e=>setPrice(e.target.value)} type="number" placeholder="Price" className="w-full p-3 rounded-xl border border-zinc-200 outline-none" />
-        <select value={category} onChange={e=>setCategory(e.target.value)} className="w-full p-3 rounded-xl border border-zinc-200">
-          <option>Clothing</option><option>Electronics</option><option>Shoes</option><option>Accessories</option>
-        </select>
-        <button type="submit" className="w-full bg-zinc-900 text-white rounded-xl py-3 font-medium">Add Product</button>
-      </form>
-    </div>
+    <section className="max-w-7xl mx-auto px-6 py-12">
+      <div className="bg-white border-2 border-gray-200 rounded-[2rem] p-8 md:p-10 shadow-sm">
+        <h3 className="text-2xl font-black text-black">Add New Product</h3>
+        <p className="text-gray-600 text-sm mt-1 font-medium">Quick add for demo purpose</p>
+        <div className="flex flex-col md:flex-row gap-4 mt-6">
+          <input
+            value={name}
+            onChange={(e)=>setName(e.target.value)}
+            placeholder="Enter product name..."
+            className="flex-1 bg-gray-100 border-2 border-gray-300 rounded-full px-6 py-3.5 text-sm text-black placeholder:text-gray-500 font-medium outline-none focus:border-black focus:bg-white transition"
+          />
+          <button className="bg-black text-white px-8 py-3.5 rounded-full text-sm font-bold hover:bg-gray-900 transition">
+            + Add Product
+          </button>
+        </div>
+      </div>
+    </section>
   );
 }
